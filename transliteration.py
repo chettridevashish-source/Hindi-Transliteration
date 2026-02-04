@@ -5,7 +5,7 @@ Created on Wed Jan  8 11:51:59 2020
 
 @author: prakhar
 """
-
+import os
 from flask import Flask, request
 from flask_cors import CORS
 
@@ -119,5 +119,12 @@ def trans():
 		
 	return s
 
+  # Add this import at the top of your file
+
+# ... (keep all your 'scheme', 'app', and 'trans' logic exactly as it is) ...
+
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5555, debug=True, threaded=True)
+    # Use the port assigned by Render, or default to 10000
+    port = int(os.environ.get("PORT", 10000))
+    # host must be 0.0.0.0 for the server to be accessible
+    app.run(host='0.0.0.0', port=port)
